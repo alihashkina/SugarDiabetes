@@ -3,6 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_alcohol.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_alcohol_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_back_plus_minus.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_block.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_block_check.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_calendar.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_fastfood.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_fastfood_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_line.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_medicines.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_medicines_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_menu.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_angry.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_angry_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_bad.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_bad_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_good.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_good_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_happines.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_happines_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_normal.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_mood_normal_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_save.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_smoking.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_smoking_red.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_sport.xml" value="0.3828125" />
+        <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/drawable/ic_sport_red.xml" value="0.3828125" />
         <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/layout/adding_sugar_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Marina/SugarDiabetes/app/src/main/res/layout/general_page_fragment.xml" value="0.36666666666666664" />
