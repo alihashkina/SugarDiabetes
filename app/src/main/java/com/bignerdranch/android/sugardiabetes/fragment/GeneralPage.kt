@@ -102,6 +102,7 @@ class GeneralPage : Fragment() {
 //            RoomDBViewModel(DatabaseHelperImpl(DatabaseBuilder.getInstance(context!!))).fetchUsers()
 //            RoomDBViewModel(DatabaseHelperImpl(DatabaseBuilder.getInstance(context!!))).getUsers()
             flag = true
+            Log.i("LOG", "++++")
     }
 //
 //
