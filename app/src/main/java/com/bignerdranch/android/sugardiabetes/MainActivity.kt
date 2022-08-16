@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage
+import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.dbManager
 import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.editChips
 import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.editData
 import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.editSugar
@@ -98,5 +99,8 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Int
     }
 
 }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        dbManager.closeDb()
+    }
 }

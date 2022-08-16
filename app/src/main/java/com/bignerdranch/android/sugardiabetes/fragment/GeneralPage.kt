@@ -1,5 +1,6 @@
 package com.bignerdranch.android.sugardiabetes.fragment
 
+import android.content.Context
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -12,12 +13,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import androidx.room.Query
 import com.bignerdranch.android.sugardiabetes.R
 import com.bignerdranch.android.sugardiabetes.databinding.GeneralPageFragmentBinding
 import com.bignerdranch.android.sugardiabetes.room.Sugar
+import com.bignerdranch.android.sugardiabetes.room.SugarDao
+import com.bignerdranch.android.sugardiabetes.sqlite.DBManager
 import com.bignerdranch.android.sugardiabetes.viewModel.GeneralPageViewModel
 import com.google.firebase.database.DatabaseReference
 import im.dacer.androidcharts.LineView
+import kotlinx.coroutines.flow.Flow
 import java.util.ArrayList
 
 
@@ -30,9 +35,11 @@ class GeneralPage : Fragment() {
         var editData = "10"
         var editChips = "10"
         var flag = false
+        lateinit var dbManager : DBManager
     }
 
     lateinit var database : DatabaseReference
+
 
     private lateinit var viewModel: GeneralPageViewModel
 
@@ -50,6 +57,8 @@ class GeneralPage : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(GeneralPageViewModel::class.java)
         //txtSugarConst = bindingGeneralPage.txtSugar.text.toString()
+
+        dbManager = DBManager(context!!)
 
         editSugar = bindingGeneralPage.txtSugar.text.toString()
         bindingGeneralPage.txtSugar.addTextChangedListener(object : TextWatcher {
@@ -101,9 +110,11 @@ class GeneralPage : Fragment() {
 //            bindingGeneralPage.txtSugar.setText(database.getReference("date").toString())
 //            RoomDBViewModel(DatabaseHelperImpl(DatabaseBuilder.getInstance(context!!))).fetchUsers()
 //            RoomDBViewModel(DatabaseHelperImpl(DatabaseBuilder.getInstance(context!!))).getUsers()
-            flag = true
-            Log.i("LOG", "++++")
-    }
+            dbManager.openDb()
+            dbManager.insertToDb("10.08.2022", bindingGeneralPage.txtSugar.text.toString(), "good")
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.containerView, AddingSugar.newInstance()).addToBackStack(null).commit()
+
+        }
 //
 //
 //        myRef.addValueEventListener(object: ValueEventListener {
