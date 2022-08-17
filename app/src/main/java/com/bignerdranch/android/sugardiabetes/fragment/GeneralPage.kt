@@ -1,5 +1,6 @@
 package com.bignerdranch.android.sugardiabetes.fragment
 
+import android.content.ContentValues
 import android.content.Context
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
@@ -13,17 +14,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Query
 import com.bignerdranch.android.sugardiabetes.R
 import com.bignerdranch.android.sugardiabetes.databinding.GeneralPageFragmentBinding
-import com.bignerdranch.android.sugardiabetes.room.Sugar
-import com.bignerdranch.android.sugardiabetes.room.SugarDao
-import com.bignerdranch.android.sugardiabetes.sqlite.DBManager
+import com.bignerdranch.android.sugardiabetes.db.MyDBHelper
 import com.bignerdranch.android.sugardiabetes.viewModel.GeneralPageViewModel
 import com.google.firebase.database.DatabaseReference
 import im.dacer.androidcharts.LineView
 import kotlinx.coroutines.flow.Flow
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.*
 
 
 class GeneralPage : Fragment() {
@@ -35,13 +37,23 @@ class GeneralPage : Fragment() {
         var editData = "10"
         var editChips = "10"
         var flag = false
-        lateinit var dbManager : DBManager
+        var chip1Check = false
+        var chip2Check = false
+        var chip3Check = false
+        var chip4Check = false
+        var chip5Check = false
+        var chipsCheckTxt = ""
     }
 
-    lateinit var database : DatabaseReference
+    //lateinit var database : DatabaseReference
 
-
+    //lateinit var adapter: DBAdapter
     private lateinit var viewModel: GeneralPageViewModel
+   // val sdf = SimpleDateFormat("dd.MM.yyyy hh:mm")
+//    val currentDate = sdf.format(Date())
+//var currentDate = Calendar.getInstance().time
+   val date = getCurrentDateTime()
+    val dateInString = date.toString("dd.MM.yy HH:mm")
 
 
     override fun onCreateView(
@@ -58,7 +70,12 @@ class GeneralPage : Fragment() {
         viewModel = ViewModelProvider(this).get(GeneralPageViewModel::class.java)
         //txtSugarConst = bindingGeneralPage.txtSugar.text.toString()
 
-        dbManager = DBManager(context!!)
+        //dbManager = DBManager(context!!)
+        //DBManager(context!!).openDb()
+
+
+bindingGeneralPage.txtRecord.text = "Record ${dateInString}"
+
 
         editSugar = bindingGeneralPage.txtSugar.text.toString()
         bindingGeneralPage.txtSugar.addTextChangedListener(object : TextWatcher {
@@ -110,11 +127,25 @@ class GeneralPage : Fragment() {
 //            bindingGeneralPage.txtSugar.setText(database.getReference("date").toString())
 //            RoomDBViewModel(DatabaseHelperImpl(DatabaseBuilder.getInstance(context!!))).fetchUsers()
 //            RoomDBViewModel(DatabaseHelperImpl(DatabaseBuilder.getInstance(context!!))).getUsers()
-            dbManager.openDb()
-            dbManager.insertToDb("10.08.2022", bindingGeneralPage.txtSugar.text.toString(), "good")
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.containerView, AddingSugar.newInstance()).addToBackStack(null).commit()
 
+//            DBManager(context!!).insertToDb("10.08.2022", bindingGeneralPage.txtSugar.text.toString(), "good")
+//            adapter = DBAdapter(DBManager(context!!).readDbData())
+//            bindingGeneralPage.recyclerView.layoutManager = LinearLayoutManager(context!!)
+//            bindingGeneralPage.recyclerView.adapter = adapter
+//            adapter.setItems(DBManager(context!!).readDbData())
+//           // requireActivity().supportFragmentManager.beginTransaction().replace(R.id.containerView, AddingSugar.newInstance()).addToBackStack(null).commit()
+
+            viewModel.chipsCheck()
+            var cv = ContentValues()
+            cv.put("DATE", "${dateInString}")
+            cv.put("SUGAR", bindingGeneralPage.txtSugar.text.toString())
+            cv.put("CHIPS", "${chipsCheckTxt}")
+            MyDBHelper(context!!).readableDatabase.insert("USERS", null, cv)
+            Log.i("LOG", "${chipsCheckTxt}")
+            chipsCheckTxt = ""
         }
+
+
 //
 //
 //        myRef.addValueEventListener(object: ValueEventListener {
@@ -200,5 +231,12 @@ class GeneralPage : Fragment() {
         graph.setDataList(dataLists)
     }
 
+    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
 
+    fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
+    }
 }

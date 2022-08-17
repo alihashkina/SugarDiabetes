@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.sugardiabetes.R
 import com.bignerdranch.android.sugardiabetes.databinding.AddingSugarFragmentBinding
 import com.bignerdranch.android.sugardiabetes.databinding.GeneralPageFragmentBinding
-import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.dbManager
-import com.bignerdranch.android.sugardiabetes.sqlite.DBAdapter
 import com.bignerdranch.android.sugardiabetes.viewModel.AddingSugarViewModel
 
 class AddingSugar : Fragment() {
@@ -23,7 +21,7 @@ class AddingSugar : Fragment() {
     }
     lateinit var bindingAddingSugar: AddingSugarFragmentBinding
     private lateinit var viewModel: AddingSugarViewModel
-    lateinit var adapter: DBAdapter
+    //lateinit var adapter: DBAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,15 +36,15 @@ class AddingSugar : Fragment() {
         viewModel = ViewModelProvider(this).get(AddingSugarViewModel::class.java)
         // TODO: Use the ViewModel
 
-     adapter = DBAdapter(dbManager.readDbData())
-       bindingAddingSugar.recyclerView.layoutManager = LinearLayoutManager(context!!)
-        bindingAddingSugar.recyclerView.adapter = adapter
-        adapter.setItems(dbManager.readDbData())
-
-bindingAddingSugar.button2.setOnClickListener{
-    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.containerView, GeneralPage.newInstance()).addToBackStack(null).commit()
-
-}
+//     adapter = DBAdapter(DBManager(context!!).readDbData())
+//       bindingAddingSugar.recyclerView.layoutManager = LinearLayoutManager(context!!)
+//        bindingAddingSugar.recyclerView.adapter = adapter
+//        adapter.setItems(DBManager(context!!).readDbData())
+//
+//bindingAddingSugar.button2.setOnClickListener{
+//    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.containerView, GeneralPage.newInstance()).addToBackStack(null).commit()
+//
+//}
     }
 
 }

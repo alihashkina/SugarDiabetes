@@ -12,7 +12,6 @@ import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.edi
 import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.editData
 import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.editSugar
 import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.flag
-import com.bignerdranch.android.sugardiabetes.room.Sugar
 
 
 class NewSugarActivity : AppCompatActivity() {

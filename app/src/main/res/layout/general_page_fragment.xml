@@ -42,11 +42,13 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:text="" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:text="" />
         </com.google.android.material.tabs.TabLayout>
 
@@ -71,7 +73,6 @@
                 android:layout_height="match_parent" />
 
         </HorizontalScrollView>
-
 
 
         <ScrollView
@@ -126,12 +127,11 @@
 
                                 <com.google.android.material.chip.Chip
                                     android:id="@+id/chip1"
-                                    style="@style/Widget.MaterialComponents.Chip.Action"
+                                    style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="All right"
-                                    android:textColor="@color/md_black_1000"
-                                    app:chipIcon="@drawable/ic_alcohol_red" />
+                                    android:textColor="@color/md_black_1000" />
 
                                 <com.google.android.material.chip.Chip
                                     android:id="@+id/chip2"
@@ -146,7 +146,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Kidney pain"
+                                    android:text="Good"
                                     android:textColor="@color/md_black_1000" />
 
                                 <com.google.android.material.chip.Chip
@@ -154,7 +154,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Kidney pain"
+                                    android:text="Bad"
                                     android:textColor="@color/md_black_1000" />
 
                                 <com.google.android.material.chip.Chip
@@ -162,7 +162,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Kidney pain"
+                                    android:text="Norm"
                                     android:textColor="@color/md_black_1000" />
 
 
