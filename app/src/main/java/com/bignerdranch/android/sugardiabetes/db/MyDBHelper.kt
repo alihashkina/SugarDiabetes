@@ -1,8 +1,10 @@
 package com.bignerdranch.android.sugardiabetes.db
 
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import androidx.room.RoomMasterTable.TABLE_NAME
 
 class MyDBHelper(context: Context) : SQLiteOpenHelper(context, "USERS", null, 1) {
 
@@ -13,4 +15,5 @@ db?.execSQL("CREATE TABLE USERS(USERID INTEGER PRIMARY KEY AUTOINCREMENT, DATE T
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
 
     }
+
 }
