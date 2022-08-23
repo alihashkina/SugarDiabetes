@@ -68,31 +68,6 @@ class GeneralPageViewModel : ViewModel() {
         }
     }
 
-//    fun graph(graph: LineView){
-//        val dataList = ArrayList<Int>()
-//        dataList.add(5)
-//        dataList.add(15)
-//        dataList.add(3)
-//        dataList.add(23)
-//        dataList.add(8)
-//        dataList.add(4)
-//        dataList.add(17)
-//        dataList.add(9)
-//        dataList.add(12)
-//        dataList.add(0)
-//
-//        var strList = arrayListOf("${MyDBHelper(context = GeneralPage(context)).}")
-//        val dataLists = ArrayList<ArrayList<Int>>()
-//        dataLists.add(dataList)
-//
-//        graph.setDrawDotLine(false) //optional
-//        graph.getResources().getColor(R.color.md_white_1000)
-//        graph.setShowPopup(LineView.SHOW_POPUPS_NONE) //optional
-//        graph.setBottomTextList(strList)
-//        graph.setColorArray(intArrayOf(R.color.md_black_1000))
-//        graph.setDataList(dataLists)
-//    }
-
     fun getDateTimeCalendar(txtRecord: TextView){
         year = calendar.get(Calendar.YEAR)
         month = calendar.get(Calendar.MONTH)
@@ -108,8 +83,8 @@ class GeneralPageViewModel : ViewModel() {
         var rs = db.rawQuery("SELECT DATE, SUGAR, CHIPS FROM USERS", null)
         arrayDateGraph = arrayListOf()
         arraySugarGraph = arrayListOf()
+
         while (rs.moveToNext()) {
-            //  Toast.makeText(applicationContext, rs.getString(2).get(1), Toast.LENGTH_LONG).show()
             dateDB = rs.getString(0)
             var sugarDB = rs.getString(1).toBigDecimal().setScale(2, RoundingMode.HALF_UP).toDouble()
             rs.getString(2)
@@ -117,6 +92,7 @@ class GeneralPageViewModel : ViewModel() {
             arraySugarGraph.add(sugarDB.toInt())
             Log.i("LOG", "${arrayDateGraph}")
         }
+
         if(dateDB != "") {
             var dataLists = ArrayList<ArrayList<Int>>()
             dataLists = arrayListOf(arraySugarGraph as ArrayList<Int>)
@@ -127,43 +103,6 @@ class GeneralPageViewModel : ViewModel() {
             graph.setColorArray(intArrayOf(R.color.md_black_1000))
             graph.setDataList(dataLists)
             Log.i("LOG", "+")
-
-//            arrayDateGraph = emptyList<String>()
-//             arraySugarGraph = emptyList<Int>()
         }
     }
-
-    fun graphNew(graph: LineView, context: Context){
-        var helper = MyDBHelper(context!!)
-        var db = helper.readableDatabase
-        var rs = db.rawQuery("SELECT DATE, SUGAR, CHIPS FROM USERS", null)
-
-        while (rs.moveToNext()) {
-            arrayDateGraph = arrayListOf()
-            arraySugarGraph = arrayListOf()
-            //  Toast.makeText(applicationContext, rs.getString(2).get(1), Toast.LENGTH_LONG).show()
-            dateDB = rs.getString(0)
-            var sugarDB = rs.getString(1).toBigDecimal().setScale(2, RoundingMode.HALF_UP).toDouble()
-            rs.getString(2)
-            arrayDateGraph.add(dateDB)
-            arraySugarGraph.add(sugarDB.toInt())
-            Log.i("LOG", "${arrayDateGraph}")
-        }
-
-        if(dateDB != "") {
-            var dataLists = ArrayList<ArrayList<Int>>()
-            dataLists.add(arraySugarGraph as ArrayList<Int>)
-            graph.setDrawDotLine(false) //optional
-            graph.getResources().getColor(R.color.md_white_1000)
-            graph.setShowPopup(LineView.SHOW_POPUPS_NONE) //optional
-            graph.setBottomTextList(arrayDateGraph as ArrayList<String>?)
-            graph.setColorArray(intArrayOf(R.color.md_black_1000))
-            graph.setDataList(dataLists)
-            Log.i("LOG", "+")
-
-        }
-    }
-
-
-
 }

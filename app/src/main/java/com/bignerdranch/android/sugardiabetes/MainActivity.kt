@@ -28,31 +28,5 @@ class MainActivity : AppCompatActivity() {
                 .addToBackStack(null)
                 .commit()
         }
-
-//        var helper = MyDBHelper(applicationContext)
-//        var db = helper.readableDatabase
-//        var rs = db.rawQuery("SELECT DATE, SUGAR, CHIPS FROM USERS", null)
-//
-//        while (rs.moveToNext()) {
-//          //  Toast.makeText(applicationContext, rs.getString(2).get(1), Toast.LENGTH_LONG).show()
-//            dateDB = rs.getString(0)
-//            rs.getString(1)
-//            rs.getString(2)
-//            arrayDateGraph?.add(dateDB)
-//            Log.i("LOG", "${arrayDateGraph}")
-//        }
-
-//        rs!!.moveToFirst()
-//        Date.append(rs.getString(rs.getColumnIndex(helper.DATE)) + "\n")
-//        Age.append(rs.getString(rs.getColumnIndex(DBHelper.AGE_COL)) + "\n")
-//
-//        // moving our cursor to next
-//        // position and appending values
-//        while(rs.moveToNext()){
-//            Name.append(rs.getString(rs.getColumnIndex(DBHelper.NAME_COl)) + "\n")
-//            Age.append(rs.getString(rs.getColumnIndex(DBHelper.AGE_COL)) + "\n")
-//        }
-
- //arrayDateGraph = arrayOf(rs.getColumnIndex("DATE"))
     }
 }

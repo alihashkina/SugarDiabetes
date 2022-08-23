@@ -72,36 +72,15 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(GeneralPageViewModel::class.java)
-
-//        bindingGeneralPage.txtRecord.text = "Record ${dateInString}"
-
-bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
-
+        bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
         editSugar = bindingGeneralPage.txtSugar.text.toString()
-//        bindingGeneralPage.txtSugar.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(s: Editable?) {
-//                if(bindingGeneralPage.txtSugar.text.toString().toDouble() < 0.0 ){
-//                    bindingGeneralPage.txtSugar.setText("0.0")
-//                }
-//                if(bindingGeneralPage.txtSugar.text.toString().toDouble() > 30){
-//                    bindingGeneralPage.txtSugar.setText("30.0")
-//                }
-//            }
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//            }
-//        })
-
 
             bindingGeneralPage.btnPlus.setOnClickListener {
                 if(bindingGeneralPage.txtSugar.text.toString().toDouble() < 30.0) {
                 bindingGeneralPage.txtSugar.setText(
-                    "${
-                       ((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) + 1)/10
-                    }"
+                    "${((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) + 1)/10}"
                 )
                 Log.i("LOG", "++++")
             }
@@ -112,9 +91,7 @@ bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
         bindingGeneralPage.btnMinus.setOnClickListener {
         if(bindingGeneralPage.txtSugar.text.toString().toDouble() != 0.0) {
                 bindingGeneralPage.txtSugar.setText(
-                    "${
-                        ((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) - 1)/10
-                    }"
+                    "${((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) - 1)/10}"
                 )
                 Log.i("LOG", "----")
             }
@@ -123,11 +100,9 @@ bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
         }
         }
 
-
         viewModel.graph(bindingGeneralPage.graph, context!!)
 
         bindingGeneralPage.btnSave.setOnClickListener {
-
             viewModel.chipsCheck(bindingGeneralPage.chip1, bindingGeneralPage.chip2, bindingGeneralPage.chip3, bindingGeneralPage.chip4, bindingGeneralPage.chip5)
 
             var cv = ContentValues()
@@ -135,8 +110,6 @@ bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
             cv.put("SUGAR", GeneralPage.bindingGeneralPage.txtSugar.text.toString())
             cv.put("CHIPS", "${chipsCheckTxt}")
             MyDBHelper(context!!).readableDatabase.insert("USERS", null, cv)
-            // Log.i("LOG", "${arrayDateGraph}")
-            //Log.i("LOG", "${bindingGeneralPage.txtRecord.text}")
             chipsCheckTxt = ""
             viewModel.graph(bindingGeneralPage.graph, context!!)
         }
@@ -144,7 +117,6 @@ bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
         if(bindingGeneralPage.txtRecord.text == ""){
             viewModel.getDateTimeCalendar(bindingGeneralPage.txtRecord)
         }
-
         pickDate()
     }
 
@@ -170,10 +142,4 @@ bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
         saveminute = minute
         bindingGeneralPage.txtRecord.text = "Record $saveday.${savemonth + 1}.$saveyear $savehour:$saveminute"
     }
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
 }
