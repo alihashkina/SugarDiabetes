@@ -30,7 +30,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top">
 
@@ -135,7 +135,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="All right"
+                                    android:text="Insulin"
                                     android:textColor="@color/md_black_1000" />
 
                                 <com.google.android.material.chip.Chip
@@ -143,7 +143,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Heart pain"
+                                    android:text="Weakness"
                                     android:textColor="@color/md_black_1000" />
 
                                 <com.google.android.material.chip.Chip
@@ -151,7 +151,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Good"
+                                    android:text="Sport"
                                     android:textColor="@color/md_black_1000" />
 
                                 <com.google.android.material.chip.Chip
@@ -159,7 +159,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Bad"
+                                    android:text="Fast food"
                                     android:textColor="@color/md_black_1000" />
 
                                 <com.google.android.material.chip.Chip
@@ -167,7 +167,7 @@
                                     style="@style/Widget.MaterialComponents.Chip.Choice"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Norm"
+                                    android:text="Diet"
                                     android:textColor="@color/md_black_1000" />
 
 
@@ -185,6 +185,8 @@
                         android:inputType="numberDecimal"
                         android:maxLength="4"
                         android:text="7.1"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:textColor="@color/md_black_1000"
                         android:textSize="60sp"
                         android:textStyle="bold"

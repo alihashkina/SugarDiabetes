@@ -76,7 +76,7 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
 
 //        bindingGeneralPage.txtRecord.text = "Record ${dateInString}"
 
-
+bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
 
         editSugar = bindingGeneralPage.txtSugar.text.toString()
 //        bindingGeneralPage.txtSugar.addTextChangedListener(object : TextWatcher {
@@ -100,7 +100,7 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
                 if(bindingGeneralPage.txtSugar.text.toString().toDouble() < 30.0) {
                 bindingGeneralPage.txtSugar.setText(
                     "${
-                        bindingGeneralPage.txtSugar.text.toString().toDouble() + 0.1
+                       ((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) + 1)/10
                     }"
                 )
                 Log.i("LOG", "++++")
@@ -113,7 +113,7 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
         if(bindingGeneralPage.txtSugar.text.toString().toDouble() != 0.0) {
                 bindingGeneralPage.txtSugar.setText(
                     "${
-                        bindingGeneralPage.txtSugar.text.toString().toDouble() - 0.1
+                        ((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) - 1)/10
                     }"
                 )
                 Log.i("LOG", "----")
@@ -123,35 +123,8 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
         }
         }
 
-//        var helper = MyDBHelper(context!!)
-//        var db = helper.readableDatabase
-//        var rs = db.rawQuery("SELECT DATE, SUGAR, CHIPS FROM USERS", null)
-//
-//
-//        while (rs.moveToNext()) {
-//            //  Toast.makeText(applicationContext, rs.getString(2).get(1), Toast.LENGTH_LONG).show()
-//            dateDB = rs.getString(0)
-//           var sugarDB = rs.getString(1).toBigDecimal().setScale(2, RoundingMode.HALF_UP).toDouble()
-//            rs.getString(2)
-//            arrayDateGraph.add(dateDB)
-//            arraySugarGraph.add(sugarDB.toInt())
-//            Log.i("LOG", "${arrayDateGraph}")
-//        }
 
-//        val dataList = ArrayList<Int>()
-//        dataList.add(5)
-//        dataList.add(15)
-//        dataList.add(3)
-//        dataList.add(23)
-//        dataList.add(8)
-//        dataList.add(4)
-//        dataList.add(17)
-//        dataList.add(9)
-//        dataList.add(12)
-//        dataList.add(0)
-
-
-        viewModel.graph(bindingGeneralPage.graph)
+        viewModel.graph(bindingGeneralPage.graph, context!!)
 
         bindingGeneralPage.btnSave.setOnClickListener {
 
@@ -165,23 +138,7 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
             // Log.i("LOG", "${arrayDateGraph}")
             //Log.i("LOG", "${bindingGeneralPage.txtRecord.text}")
             chipsCheckTxt = ""
-
-            var helper = MyDBHelper(context!!)
-            var db = helper.readableDatabase
-            var rs = db.rawQuery("SELECT DATE, SUGAR, CHIPS FROM USERS", null)
-
-
-            while (rs.moveToNext()) {
-                //  Toast.makeText(applicationContext, rs.getString(2).get(1), Toast.LENGTH_LONG).show()
-                dateDB = rs.getString(0)
-                var sugarDB = rs.getString(1).toBigDecimal().setScale(2, RoundingMode.HALF_UP).toDouble()
-                rs.getString(2)
-                arrayDateGraph.add(dateDB)
-                arraySugarGraph.add(sugarDB.toInt())
-                Log.i("LOG", "${arrayDateGraph}")
-            }
-
-            viewModel.graph(bindingGeneralPage.graph)
+            viewModel.graph(bindingGeneralPage.graph, context!!)
         }
 
         if(bindingGeneralPage.txtRecord.text == ""){

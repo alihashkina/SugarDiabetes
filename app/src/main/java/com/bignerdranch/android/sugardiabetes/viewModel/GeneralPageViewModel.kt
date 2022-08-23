@@ -1,6 +1,7 @@
 package com.bignerdranch.android.sugardiabetes.viewModel
 
 import android.content.ContentValues
+import android.content.Context
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
@@ -14,8 +15,10 @@ import com.bignerdranch.android.sugardiabetes.fragment.GeneralPage.Companion.dat
 import com.google.android.material.chip.Chip
 import com.madrapps.plot.line.LinePlot
 import im.dacer.androidcharts.LineView
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class GeneralPageViewModel : ViewModel() {
 
@@ -99,9 +102,56 @@ class GeneralPageViewModel : ViewModel() {
         txtRecord.text = "Record $day.${month + 1}.$year $hour:$minute"
     }
 
-    fun graph(graph: LineView){
+    fun graph(graph: LineView, context: Context){
+        var helper = MyDBHelper(context!!)
+        var db = helper.readableDatabase
+        var rs = db.rawQuery("SELECT DATE, SUGAR, CHIPS FROM USERS", null)
+        arrayDateGraph = arrayListOf()
+        arraySugarGraph = arrayListOf()
+        while (rs.moveToNext()) {
+            //  Toast.makeText(applicationContext, rs.getString(2).get(1), Toast.LENGTH_LONG).show()
+            dateDB = rs.getString(0)
+            var sugarDB = rs.getString(1).toBigDecimal().setScale(2, RoundingMode.HALF_UP).toDouble()
+            rs.getString(2)
+            arrayDateGraph.add(dateDB)
+            arraySugarGraph.add(sugarDB.toInt())
+            Log.i("LOG", "${arrayDateGraph}")
+        }
         if(dateDB != "") {
-            val dataLists = ArrayList<ArrayList<Int>>()
+            var dataLists = ArrayList<ArrayList<Int>>()
+            dataLists = arrayListOf(arraySugarGraph as ArrayList<Int>)
+            graph.setDrawDotLine(false) //optional
+            graph.getResources().getColor(R.color.md_white_1000)
+            graph.setShowPopup(LineView.SHOW_POPUPS_NONE) //optional
+            graph.setBottomTextList(arrayDateGraph as ArrayList<String>?)
+            graph.setColorArray(intArrayOf(R.color.md_black_1000))
+            graph.setDataList(dataLists)
+            Log.i("LOG", "+")
+
+//            arrayDateGraph = emptyList<String>()
+//             arraySugarGraph = emptyList<Int>()
+        }
+    }
+
+    fun graphNew(graph: LineView, context: Context){
+        var helper = MyDBHelper(context!!)
+        var db = helper.readableDatabase
+        var rs = db.rawQuery("SELECT DATE, SUGAR, CHIPS FROM USERS", null)
+
+        while (rs.moveToNext()) {
+            arrayDateGraph = arrayListOf()
+            arraySugarGraph = arrayListOf()
+            //  Toast.makeText(applicationContext, rs.getString(2).get(1), Toast.LENGTH_LONG).show()
+            dateDB = rs.getString(0)
+            var sugarDB = rs.getString(1).toBigDecimal().setScale(2, RoundingMode.HALF_UP).toDouble()
+            rs.getString(2)
+            arrayDateGraph.add(dateDB)
+            arraySugarGraph.add(sugarDB.toInt())
+            Log.i("LOG", "${arrayDateGraph}")
+        }
+
+        if(dateDB != "") {
+            var dataLists = ArrayList<ArrayList<Int>>()
             dataLists.add(arraySugarGraph as ArrayList<Int>)
             graph.setDrawDotLine(false) //optional
             graph.getResources().getColor(R.color.md_white_1000)
@@ -110,19 +160,10 @@ class GeneralPageViewModel : ViewModel() {
             graph.setColorArray(intArrayOf(R.color.md_black_1000))
             graph.setDataList(dataLists)
             Log.i("LOG", "+")
+
         }
     }
 
-    fun graphError(graph: LineView){
-            val dataLists = ArrayList<ArrayList<Int>>()
-            //dataLists.add(arraySugarGraph as ArrayList<Int>)
-            graph.setDrawDotLine(false) //optional
-            graph.getResources().getColor(R.color.md_white_1000)
-            graph.setShowPopup(LineView.SHOW_POPUPS_NONE) //optional
-            //graph.setBottomTextList(arrayDateGraph as ArrayList<String>?)
-            graph.setColorArray(intArrayOf(R.color.md_black_1000))
-            graph.setDataList(dataLists)
-            Log.i("LOG", "-")
-    }
+
 
 }
