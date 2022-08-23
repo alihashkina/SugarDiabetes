@@ -90,7 +90,6 @@ class GeneralPageViewModel : ViewModel() {
             rs.getString(2)
             arrayDateGraph.add(dateDB)
             arraySugarGraph.add(sugarDB.toInt())
-            Log.i("LOG", "${arrayDateGraph}")
         }
 
         if(dateDB != "") {
@@ -102,7 +101,6 @@ class GeneralPageViewModel : ViewModel() {
             graph.setBottomTextList(arrayDateGraph as ArrayList<String>?)
             graph.setColorArray(intArrayOf(R.color.md_black_1000))
             graph.setDataList(dataLists)
-            Log.i("LOG", "+")
         }
     }
 }

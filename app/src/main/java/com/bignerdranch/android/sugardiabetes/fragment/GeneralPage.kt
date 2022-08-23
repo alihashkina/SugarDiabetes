@@ -82,9 +82,10 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
                 bindingGeneralPage.txtSugar.setText(
                     "${((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) + 1)/10}"
                 )
-                Log.i("LOG", "++++")
+                    bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
             }
         else{
+            bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
             bindingGeneralPage.txtSugar.setText("30.0")
         }
     }
@@ -93,9 +94,10 @@ class GeneralPage : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDi
                 bindingGeneralPage.txtSugar.setText(
                     "${((bindingGeneralPage.txtSugar.text.toString().toDouble() * 10) - 1)/10}"
                 )
-                Log.i("LOG", "----")
+            bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
             }
         else{
+            bindingGeneralPage.txtSugar.setSelection(bindingGeneralPage.txtSugar.length())
             bindingGeneralPage.txtSugar.setText("0.0")
         }
         }
